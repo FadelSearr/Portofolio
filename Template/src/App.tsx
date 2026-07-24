@@ -4,51 +4,62 @@ import { useState, useEffect } from 'react'
 
 const SERVICES = [
   { icon: '◈', title: 'Data Analysis & Visualization', desc: 'Power BI, DAX, Star Schema — dashboard interaktif yang mengubah data mentah menjadi insight bisnis.' },
-  { icon: '◉', title: 'Data Extraction & Automation', desc: 'Python, Selenium, Web Scraping — otomasi pengambilan data dari berbagai sumber secara efisien.' },
-  { icon: '◎', title: 'Geospatial & Quantitative Analysis', desc: 'WebGIS, Change Detection, Analisis Kuantitatif — visualisasi data spasial dan analisis pasar keuangan.' },
+  { icon: '◈', title: 'Data Extraction & Automation', desc: 'Python, Selenium, Web Scraping — otomasi pengambilan data dari berbagai sumber secara efisien.' },
+  { icon: '◈', title: 'Geospatial & Quantitative Analysis', desc: 'WebGIS, Change Detection, Analisis Kuantitatif — visualisasi data spasial dan analisis pasar keuangan.' },
 ]
 
 const PROJECTS = [
   {
     id: '001',
+    title: 'Del_Drive_Tracker',
+    tag: 'System Tracking · 2025',
+    headline: 'Pelacakan & Analisis Utilitas Penyimpanan File',
+    detail: 'Mengembangkan sistem pelacakan berbasis TypeScript untuk mencatat riwayat akses dan data kapasitas guna memprediksi tren pertumbuhan penyimpanan.',
+    metrics: [['TypeScript', 'Language'], ['Analytics', 'Focus'], ['JSON', 'Data Format']],
+    color: '#eef2ff',
+    accent: '#4f46e5',
+    img: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=900&h=560&fit=crop&auto=format',
+  },
+  {
+    id: '002',
     title: 'Dellmology',
     tag: 'FinTech · 2026',
-    headline: 'Platform Market Intelligence & Screener untuk Bursa Efek Indonesia',
-    detail: 'Menganalisis data transaksi saham IDX untuk mendeteksi aliran investor institusi (bandarmology) dan anomali pasar. Implementasi model statistik kuantitatif menggunakan Python untuk evaluasi tren harga historis dan pola perdagangan.',
-    metrics: [['IDX', 'Data Source'], ['Python', 'Analytics Engine'], ['Next.js', 'Dashboard']],
+    headline: 'Market Intelligence & Screener Saham BEI',
+    detail: 'Menganalisis data transaksi saham IDX untuk mendeteksi aliran investor institusi (bandarmology) dan anomali pasar.',
+    metrics: [['IDX', 'Data Source'], ['Python', 'Engine'], ['Next.js', 'Dashboard']],
     color: '#f0f4ff',
     accent: '#3b5bdb',
     img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&h=560&fit=crop&auto=format',
   },
   {
-    id: '002',
+    id: '003',
     title: 'Power BI Dashboard',
     tag: 'Business Intelligence · 2026',
-    headline: 'Global Superstore Analytics dengan Star Schema & DAX',
-    detail: 'Merancang arsitektur Star Schema (1 fact table, 5 dimension tables) dan formula DAX tingkat lanjut (Time Intelligence) untuk menghitung KPI kritis seperti Sales YoY Growth, Profit Margin %, dan performa regional.',
-    metrics: [['Star Schema', 'Data Model'], ['DAX', 'Calculations'], ['Power BI', 'Visualization']],
+    headline: 'Global Superstore Analytics (Star Schema & DAX)',
+    detail: 'Merancang arsitektur Star Schema (1 fact table, 5 dimension tables) dan formula DAX tingkat lanjut untuk menghitung KPI bisnis kritis.',
+    metrics: [['Star Schema', 'Model'], ['DAX', 'Calculation'], ['Power BI', 'Tool']],
     color: '#f0fdf4',
     accent: '#16a34a',
     img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=560&fit=crop&auto=format',
   },
   {
-    id: '003',
+    id: '004',
     title: 'IKN Change Detection',
     tag: 'Geospatial · 2026',
-    headline: 'Deteksi Perubahan Area Terbangun di Ibu Kota Nusantara',
-    detail: 'Memproses dan menganalisis citra satelit multi-temporal serta dataset spasial untuk mendeteksi perubahan tutupan lahan di IKN. Transformasi data geografis mentah (GIS) menjadi dataset terstruktur untuk analisis perencanaan kota.',
-    metrics: [['GIS', 'Spatial Data'], ['JS', 'Visualization'], ['Multi-temporal', 'Analysis']],
+    headline: 'Deteksi Perubahan Area Terbangun di Nusantara',
+    detail: 'Memproses citra satelit multi-temporal serta dataset spasial untuk menganalisis perkembangan tutupan lahan di IKN.',
+    metrics: [['GIS', 'Spatial Data'], ['JS', 'Visualization'], ['Satellites', 'Analysis']],
     color: '#fefce8',
     accent: '#ca8a04',
     img: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=900&h=560&fit=crop&auto=format',
   },
   {
-    id: '004',
+    id: '005',
     title: 'WebGIS Munich',
     tag: 'GIS · 2026',
-    headline: 'Platform Pemetaan Interaktif untuk Data Regional Munich',
-    detail: 'Membangun layer peta interaktif dan visualisasi geospasial menggunakan Leaflet/Mapbox. Mengagregasi data POI dan koordinat geografis ke zona kluster untuk analisis kepadatan urban.',
-    metrics: [['Leaflet', 'Map Engine'], ['POI', 'Data Points'], ['Vercel', 'Deployed']],
+    headline: 'Platform Pemetaan Regional Kota Munich',
+    detail: 'Membangun layer peta interaktif dan visualisasi geospasial menggunakan Leaflet/Mapbox untuk menganalisis kepadatan perkotaan.',
+    metrics: [['Leaflet', 'Map Engine'], ['POI', 'Data Points'], ['Mapbox', 'Tiles']],
     color: '#fdf2f8',
     accent: '#db2777',
     img: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=900&h=560&fit=crop&auto=format',
@@ -89,7 +100,7 @@ function Nav() {
           <div style={{ width: 32, height: 32, background: '#0a0a0a', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <span style={{ color: '#fff', fontFamily: 'Lora, serif', fontSize: 14, fontStyle: 'italic' }}>F</span>
           </div>
-          <span style={{ fontWeight: 600, fontSize: 15, letterSpacing: '-0.02em', color: '#0a0a0a' }}>Fadel Setiawan </span>
+          <span style={{ fontWeight: 600, fontSize: 15, letterSpacing: '-0.02em', color: '#0a0a0a' }}>Fadel Setiawan Arifin</span>
         </button>
 
         {/* Desktop links */}
@@ -149,26 +160,27 @@ function Nav() {
 
 function Hero() {
   return (
-    <section style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 32px 80px', maxWidth: 1200, margin: '0 auto', paddingTop: 120 }}>
-      {/* Top strip */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 80, paddingTop: 40 }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-          <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e' }} />
-          <span style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: '#888', letterSpacing: '0.08em' }}>OPEN FOR OPPORTUNITIES</span>
-        </div>
-        <span style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: '#bbb', letterSpacing: '0.08em' }}>Jakarta · Indonesia</span>
-      </div>
-
+    <section style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '0 32px 0px', maxWidth: 1200, margin: '0 auto', paddingTop: 50 }}>
       {/* Main headline */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 0, marginBottom: 64 }}>
-        <h1 style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700, letterSpacing: '-0.04em', lineHeight: 0.95, color: '#0a0a0a', fontSize: 'clamp(56px, 9vw, 112px)', marginBottom: 8 }}>
-          Data
-        </h1>
-        <h1 style={{ fontFamily: 'Lora, serif', fontWeight: 400, letterSpacing: '-0.02em', lineHeight: 0.95, color: '#0a0a0a', fontStyle: 'italic', fontSize: 'clamp(56px, 9vw, 112px)', marginBottom: 8 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 0, marginBottom: 64, paddingTop: 0 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%', flexWrap: 'wrap', gap: 20 }}>
+          <h1 style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700, letterSpacing: '-0.04em', lineHeight: 0.95, color: '#0a0a0a', fontSize: 'clamp(56px, 9vw, 112px)', marginBottom: 0 }}>
+            Data
+          </h1>
+          {/* Top strip */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 15, alignItems: 'flex-end' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+              <div style={{ width: 7, height: 7, borderRadius: '50%', background: '#22c55e' }} />
+              <span style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: '#000000ff', letterSpacing: '0.08em' }}>OPEN FOR OPPORTUNITIES</span>
+            </div>
+            <span style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: '#000000ff', letterSpacing: '0.08em' }}>Jakarta · Indonesia</span>
+          </div>
+        </div>
+        <h1 style={{ fontFamily: 'Lora, serif', fontWeight: 400, letterSpacing: '-0.02em', lineHeight: 0.95, color: '#0a0a0a', fontStyle: 'italic', fontSize: 'clamp(56px, 9vw, 112px)', marginBottom: 8, marginTop: 8 }}>
           Analyst
         </h1>
         <h1 style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 300, letterSpacing: '-0.04em', lineHeight: 0.95, color: '#b0aca4', fontSize: 'clamp(56px, 9vw, 112px)' }}>
-          & BI Developer.
+          & Developer.
         </h1>
       </div>
 
@@ -176,7 +188,7 @@ function Hero() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, alignItems: 'end' }}>
         <p style={{ fontSize: 16, lineHeight: 1.75, color: '#666', maxWidth: 420 }}>
           Mahasiswa Sistem Informasi dengan spesialisasi analisis data dan visualisasi interaktif
-          menggunakan Power BI. Berpengalaman mengekstrak data otomatis via Python & Selenium,
+          menggunakan Power BI. Berpengalaman mengekstrak data otomatis via Python & Selenium.
           serta mengolah dataset kompleks dari data pasar keuangan hingga data spasial.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-end' }}>
@@ -203,112 +215,6 @@ function Hero() {
             <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#aaa', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{l}</div>
           </div>
         ))}
-      </div>
-    </section>
-  )
-}
-
-// ─── Services ─────────────────────────────────────────────────────────────────
-
-function Services() {
-  return (
-    <section id="keahlian" style={{ padding: '120px 32px', maxWidth: 1200, margin: '0 auto', borderTop: '1px solid #f0eeeb' }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 80, alignItems: 'start' }}>
-        <div>
-          <p style={{ fontFamily: 'JetBrains Mono', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', marginBottom: 16 }}>Key Competencies</p>
-          <h2 style={{ fontFamily: 'Lora', fontStyle: 'italic', fontSize: 'clamp(32px, 3vw, 44px)', lineHeight: 1.2, color: '#0a0a0a', marginBottom: 20 }}>Keahlian &amp; Spesialisasi</h2>
-          <p style={{ fontSize: 14, lineHeight: 1.8, color: '#888' }}>
-            Menggabungkan kemampuan teknis analisis data dengan pemahaman bisnis — mengubah data mentah menjadi keputusan strategis.
-          </p>
-        </div>
-        <div style={{ display: 'grid', gap: 1, background: '#f0eeeb' }}>
-          {SERVICES.map(({ icon, title, desc }) => (
-            <ServiceRow key={title} icon={icon} title={title} desc={desc} />
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function ServiceRow({ icon, title, desc }: { icon: string; title: string; desc: string }) {
-  const [hovered, setHovered] = useState(false)
-  return (
-    <div
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-      style={{ padding: '32px 36px', background: hovered ? '#fafaf8' : '#fff', display: 'flex', gap: 24, alignItems: 'flex-start', cursor: 'default', transition: 'background 0.2s' }}>
-      <span style={{ fontSize: 20, color: hovered ? '#3b5bdb' : '#ccc', transition: 'color 0.2s', marginTop: 2 }}>{icon}</span>
-      <div>
-        <h3 style={{ fontSize: 16, fontWeight: 600, letterSpacing: '-0.02em', color: '#0a0a0a', marginBottom: 8 }}>{title}</h3>
-        <p style={{ fontSize: 14, lineHeight: 1.75, color: '#888' }}>{desc}</p>
-      </div>
-    </div>
-  )
-}
-
-// ─── Projects ─────────────────────────────────────────────────────────────────
-
-function Projects() {
-  const [active, setActive] = useState(0)
-  const p = PROJECTS[active]
-
-  return (
-    <section id="proyek" style={{ padding: '120px 0', borderTop: '1px solid #f0eeeb' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 32px', marginBottom: 60 }}>
-        <p style={{ fontFamily: 'JetBrains Mono', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', marginBottom: 16 }}>Portfolio</p>
-        <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 20 }}>
-          <h2 style={{ fontFamily: 'Lora', fontStyle: 'italic', fontSize: 'clamp(32px, 3vw, 44px)', lineHeight: 1.2, color: '#0a0a0a' }}>Proyek Terpilih</h2>
-          <div style={{ display: 'flex', gap: 8 }}>
-            {PROJECTS.map((_, i) => (
-              <button key={i} onClick={() => setActive(i)}
-                style={{ width: 32, height: 32, border: '1px solid', borderColor: i === active ? '#0a0a0a' : '#e0ddd8', background: i === active ? '#0a0a0a' : 'transparent', color: i === active ? '#fff' : '#888', fontFamily: 'JetBrains Mono', fontSize: 11, cursor: 'pointer', transition: 'all 0.2s' }}>
-                {String(i + 1).padStart(2, '0')}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Project display */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: 480, background: p.color, transition: 'background 0.4s ease' }} key={p.id}>
-        {/* Info pane */}
-        <div style={{ padding: '64px 48px 64px 64px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-          <div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 32 }}>
-              <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#999' }}>{p.tag}</span>
-              <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: p.accent }}>{p.id}</span>
-            </div>
-            <h3 style={{ fontFamily: 'Outfit', fontWeight: 700, fontSize: 48, letterSpacing: '-0.04em', color: '#0a0a0a', marginBottom: 12, lineHeight: 1 }}>{p.title}</h3>
-            <p style={{ fontFamily: 'Lora', fontStyle: 'italic', fontSize: 18, color: '#444', marginBottom: 24, lineHeight: 1.5 }}>{p.headline}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.8, color: '#666', maxWidth: 380 }}>{p.detail}</p>
-          </div>
-
-          {/* Metrics */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, marginTop: 40, background: '#0a0a0a20' }}>
-            {p.metrics.map(([v, l]) => (
-              <div key={l} style={{ padding: '16px 12px', background: 'rgba(255,255,255,0.6)' }}>
-                <div style={{ fontFamily: 'Outfit', fontWeight: 700, fontSize: 22, letterSpacing: '-0.03em', color: p.accent, marginBottom: 2 }}>{v}</div>
-                <div style={{ fontFamily: 'JetBrains Mono', fontSize: 9, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#888' }}>{l}</div>
-              </div>
-            ))}
-          </div>
-
-          <a href={`https://github.com/FadelSearr/${p.title === 'Power BI Dashboard' ? 'Portofolio' : p.title.replace(/ /g, '_')}`} target="_blank" rel="noopener noreferrer"
-            style={{ marginTop: 32, padding: '12px 28px', background: '#0a0a0a', color: '#fff', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 500, letterSpacing: '-0.01em', alignSelf: 'flex-start', transition: 'background 0.2s', textDecoration: 'none', display: 'inline-block' }}
-            onMouseEnter={(e) => (e.currentTarget.style.background = p.accent)}
-            onMouseLeave={(e) => (e.currentTarget.style.background = '#0a0a0a')}>
-            Lihat di GitHub →
-          </a>
-        </div>
-
-        {/* Image pane */}
-        <div style={{ overflow: 'hidden', position: 'relative' }}>
-          <img src={p.img} alt={p.title}
-            style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85, transition: 'opacity 0.4s' }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.85')} />
-        </div>
       </div>
     </section>
   )
@@ -354,27 +260,6 @@ function About() {
             menggunakan WebGIS. Percaya bahwa data yang tepat menghasilkan keputusan yang tepat.
           </p>
 
-          {/* Education */}
-          <div style={{ borderTop: '1px solid #f0eeeb', paddingTop: 32 }}>
-            <p style={{ fontFamily: 'JetBrains Mono', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', marginBottom: 20 }}>Pendidikan & Pelatihan</p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-              {[
-                ['2023–Kini', 'S1 Sistem Informasi', 'Universitas Bakrie'],
-                ['2026', 'Business Intelligence & Power BI', 'Mata Kuliah'],
-                ['2025', 'Web Development Bootcamp', 'RevoU Mini Camp'],
-                ['2025', 'Programming & Algorithms', 'ByteCamp'],
-              ].map(([yr, role, co]) => (
-                <div key={yr+role} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                  <div>
-                    <span style={{ fontSize: 14, fontWeight: 500, color: '#0a0a0a' }}>{role}</span>
-                    <span style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: '#3b5bdb', marginLeft: 8 }}>{co}</span>
-                  </div>
-                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: 11, color: '#bbb' }}>{yr}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
           {/* Stack badges */}
           <div style={{ marginTop: 32, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
             {STACK.map((s) => (
@@ -389,11 +274,212 @@ function About() {
   )
 }
 
+
+// ─── Services ─────────────────────────────────────────────────────────────────
+
+function Services() {
+  return (
+    <section id="keahlian" style={{ padding: '120px 32px', maxWidth: 1200, margin: '0 auto', borderTop: '1px solid #f0eeeb' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '320px 1fr', gap: 80, alignItems: 'start' }}>
+        <div>
+          <p style={{ fontFamily: 'JetBrains Mono', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', marginBottom: 16 }}>Key Competencies</p>
+          <h2 style={{ fontFamily: 'Lora', fontStyle: 'italic', fontSize: 'clamp(32px, 3vw, 44px)', lineHeight: 1.2, color: '#0a0a0a', marginBottom: 20 }}>Keahlian &amp; Spesialisasi</h2>
+          <p style={{ fontSize: 14, lineHeight: 1.8, color: '#888' }}>
+            Menggabungkan kemampuan teknis analisis data dengan pemahaman bisnis — mengubah data mentah menjadi keputusan strategis.
+          </p>
+        </div>
+        <div style={{ display: 'grid', gap: 1, background: '#f0eeeb' }}>
+          {SERVICES.map(({ icon, title, desc }) => (
+            <ServiceRow key={title} icon={icon} title={title} desc={desc} />
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ServiceRow({ icon, title, desc }: { icon: string; title: string; desc: string }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{ padding: '32px 36px', background: hovered ? '#fafaf8' : '#fff', display: 'flex', gap: 24, alignItems: 'flex-start', cursor: 'default', transition: 'background 0.2s' }}>
+      <span style={{ fontSize: 20, color: hovered ? '#3b5bdb' : '#ccc', transition: 'color 0.2s', marginTop: 2 }}>{icon}</span>
+      <div>
+        <h3 style={{ fontSize: 16, fontWeight: 600, letterSpacing: '-0.02em', color: '#0a0a0a', marginBottom: 8 }}>{title}</h3>
+        <p style={{ fontSize: 14, lineHeight: 1.75, color: '#888' }}>{desc}</p>
+      </div>
+    </div>
+  )
+}
+
+// ─── Projects ─────────────────────────────────────────────────────────────────
+
+function Projects() {
+  return (
+    <section id="proyek" style={{ padding: '120px 32px', maxWidth: 1200, margin: '0 auto', borderTop: '1px solid #f0eeeb' }}>
+      <div style={{ marginBottom: 60 }}>
+        <p style={{ fontFamily: 'JetBrains Mono', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', marginBottom: 16 }}>Portfolio</p>
+        <h2 style={{ fontFamily: 'Lora', fontStyle: 'italic', fontSize: 'clamp(32px, 3vw, 44px)', lineHeight: 1.2, color: '#0a0a0a' }}>Proyek Terpilih</h2>
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 32 }}>
+        {PROJECTS.map((p) => {
+          const cardStyle: React.CSSProperties = {
+            textDecoration: 'none',
+            background: '#0d0d12',
+            borderRadius: 16,
+            border: '1px solid #1f1f26',
+            overflow: 'hidden',
+            display: 'flex',
+            flexDirection: 'column',
+            transition: 'all 0.3s ease',
+            boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
+          }
+
+          return (
+            <a
+              key={p.id}
+              href={`https://github.com/FadelSearr/${p.title === 'Power BI Dashboard' ? 'Portofolio' : p.title.replace(/ /g, '_')}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-card"
+              style={cardStyle}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-6px)';
+                e.currentTarget.style.borderColor = p.accent;
+                e.currentTarget.style.boxShadow = `0 12px 30px ${p.accent}20`;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.borderColor = '#1f1f26';
+                e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+              }}
+            >
+              {/* Preview Image Container */}
+              <div style={{ height: 210, overflow: 'hidden', position: 'relative', background: '#13131a', borderBottom: '1px solid #1f1f26' }}>
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85, transition: 'transform 0.4s ease' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.04)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                />
+              </div>
+
+              {/* Card Content */}
+              <div style={{ padding: 24, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+                {/* Badge */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
+                  <span style={{
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: 9,
+                    fontWeight: 600,
+                    letterSpacing: '0.05em',
+                    background: 'rgba(59, 91, 219, 0.1)',
+                    color: '#748ffc',
+                    padding: '4px 10px',
+                    borderRadius: 4,
+                    textTransform: 'uppercase'
+                  }}>
+                    GitHub Repo
+                  </span>
+                  <span style={{
+                    fontFamily: 'JetBrains Mono',
+                    fontSize: 9,
+                    color: '#4e4e5e'
+                  }}>
+                    {p.tag}
+                  </span>
+                </div>
+
+                {/* Title */}
+                <h3 style={{
+                  fontFamily: 'Outfit, sans-serif',
+                  fontWeight: 600,
+                  fontSize: 22,
+                  color: '#ffffff',
+                  marginBottom: 10,
+                  lineHeight: 1.25
+                }}>
+                  {p.title}
+                </h3>
+
+                {/* Headline / Description */}
+                <p style={{
+                  fontSize: 13,
+                  lineHeight: 1.6,
+                  color: '#8e8e9f',
+                  marginBottom: 20,
+                  flexGrow: 1
+                }}>
+                  {p.headline}
+                </p>
+
+                {/* Metrics / Tech Stack */}
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, borderTop: '1px solid #1f1f26', paddingTop: 16 }}>
+                  {p.metrics.map(([v]) => (
+                    <span key={v} style={{
+                      fontFamily: 'JetBrains Mono',
+                      fontSize: 10,
+                      color: '#8e8e9f',
+                      border: '1px solid #1f1f26',
+                      padding: '3px 8px',
+                      borderRadius: 4,
+                      background: '#13131a'
+                    }}>
+                      {v}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </a>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
+
 // ─── Contact ──────────────────────────────────────────────────────────────────
 
 function Contact() {
   const [form, setForm] = useState({ name: '', email: '', type: '', message: '' })
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [statusMsg, setStatusMsg] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    setStatusMsg('')
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          access_key: 'f34edb62-bc49-4b69-bb12-fe4a98bb17f5',
+          name: form.name,
+          email: form.email,
+          subject: `Portfolio Contact: ${form.type}`,
+          message: `Jenis Kolaborasi: ${form.type}\n\n${form.message}`,
+        })
+      })
+
+      const result = await response.json()
+      if (result.success) {
+        setSent(true)
+      } else {
+        setStatusMsg(result.message || 'Gagal mengirim pesan. Silakan coba lagi.')
+      }
+    } catch (err) {
+      setStatusMsg('Terjadi kesalahan koneksi. Silakan coba lagi.')
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const inp: React.CSSProperties = {
     width: '100%', padding: '13px 16px', fontSize: 14,
@@ -417,8 +503,8 @@ function Contact() {
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
             {[
-              { icon: '✉', label: 'Email', val: 'fadel@email.com', href: 'mailto:fadel@email.com' },
-              { icon: '⟐', label: 'LinkedIn', val: 'linkedin.com/in/fadelsetiawan', href: 'https://linkedin.com/in/username' },
+              { icon: '✉', label: 'Email', val: 'fadelsetiawanarifin@email.com', href: 'mailto:fadelsetiawanarifin@email.com' },
+              { icon: '⟐', label: 'LinkedIn', val: 'linkedin.com/in/fadelsetiawanarifin', href: 'https://linkedin.com/in/fadel-setiawan-arifin-289672424' },
               { icon: '◎', label: 'GitHub', val: 'github.com/FadelSearr', href: 'https://github.com/FadelSearr' },
             ].map(({ icon, label, val, href }) => (
               <div key={label} style={{ display: 'flex', alignItems: 'center', gap: 16, paddingBottom: 24, borderBottom: '1px solid #f0eeeb' }}>
@@ -445,7 +531,7 @@ function Contact() {
               <p style={{ fontSize: 14, color: '#888', lineHeight: 1.7 }}>Pesan Anda sudah saya terima.<br />Akan saya balas dalam 1–2 hari kerja.</p>
             </div>
           ) : (
-            <form onSubmit={(e) => { e.preventDefault(); setSent(true) }} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
                 <div>
                   <label style={{ fontFamily: 'JetBrains Mono', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', display: 'block', marginBottom: 8 }}>Nama</label>
@@ -480,15 +566,16 @@ function Contact() {
                 <label style={{ fontFamily: 'JetBrains Mono', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', display: 'block', marginBottom: 8 }}>Pesan</label>
                 <textarea rows={6} required placeholder="Ceritakan kebutuhan data Anda..." value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  style={{ ...inp, resize: 'vertical' } as React.CSSProperties}
+                  style={{ ...inp, resize: 'vertical' }}
                   onFocus={(e) => (e.currentTarget.style.borderColor = '#0a0a0a')}
                   onBlur={(e) => (e.currentTarget.style.borderColor = '#e0ddd8')} />
               </div>
-              <button type="submit"
-                style={{ padding: '15px 32px', background: '#0a0a0a', color: '#fff', border: 'none', cursor: 'pointer', fontSize: 14, fontWeight: 500, letterSpacing: '-0.01em', transition: 'background 0.2s', marginTop: 8 }}
-                onMouseEnter={(e) => (e.currentTarget.style.background = '#3b5bdb')}
-                onMouseLeave={(e) => (e.currentTarget.style.background = '#0a0a0a')}>
-                Kirim Pesan →
+              {statusMsg && <p style={{ color: '#d93838', fontSize: 13 }}>{statusMsg}</p>}
+              <button type="submit" disabled={loading}
+                style={{ padding: '15px 32px', background: '#0a0a0a', color: '#fff', border: 'none', cursor: loading ? 'not-allowed' : 'pointer', fontSize: 14, fontWeight: 500, letterSpacing: '-0.01em', transition: 'background 0.2s', marginTop: 8 }}
+                onMouseEnter={(e) => { if (!loading) e.currentTarget.style.background = '#3b5bdb' }}
+                onMouseLeave={(e) => { if (!loading) e.currentTarget.style.background = '#0a0a0a' }}>
+                {loading ? 'Mengirim...' : 'Kirim Pesan →'}
               </button>
             </form>
           )}
@@ -513,8 +600,8 @@ function Footer() {
         <div style={{ display: 'flex', gap: 24 }}>
           {[
             { label: 'GitHub', href: 'https://github.com/FadelSearr' },
-            { label: 'LinkedIn', href: 'https://linkedin.com/in/username' },
-            { label: 'Instagram', href: 'https://instagram.com/username' },
+            { label: 'LinkedIn', href: 'https://www.linkedin.com/in/fadel-setiawan-arifin-289672424/' },
+            { label: 'Instagram', href: 'https://instagram.com/fadel.sear' },
           ].map(({ label, href }) => (
             <a key={label} href={href} target="_blank" rel="noopener noreferrer"
               style={{ fontFamily: 'JetBrains Mono', fontSize: 10, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#bbb', textDecoration: 'none', transition: 'color 0.2s' }}
@@ -537,9 +624,9 @@ export default function App() {
       <Nav />
       <main style={{ paddingTop: 72 }}>
         <Hero />
+        <About />
         <Services />
         <Projects />
-        <About />
         <Contact />
       </main>
       <Footer />
