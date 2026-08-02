@@ -64,6 +64,17 @@ const PROJECTS = [
     accent: '#db2777',
     img: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=900&h=560&fit=crop&auto=format',
   },
+  {
+    id: '006',
+    title: 'ERP-Data-Migration-Validation',
+    tag: 'Data Engineering · 2026',
+    headline: 'ERP Data Validation Simulation',
+    detail: 'Membuat simulasi migrasi dan validasi data ERP menggunakan Python Faker untuk menghasilkan dataset dan mendeteksi ketidaksesuaian.',
+    metrics: [['Python', 'Scripting'], ['Faker', 'Data Gen'], ['Validation', 'Process']],
+    color: '#fff4e6',
+    accent: '#e67700',
+    img: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=900&h=560&fit=crop&auto=format',
+  },
 ]
 
 const STACK = ['Python', 'Power BI', 'DAX', 'SQL', 'JavaScript', 'TypeScript', 'Selenium', 'Next.js', 'Leaflet', 'Mapbox', 'Golang', 'Git']
