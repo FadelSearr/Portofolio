@@ -425,7 +425,7 @@ function Projects() {
                   marginBottom: 20,
                   flexGrow: 1
                 }}>
-                  {p.headline}
+                  {p.detail}
                 </p>
 
                 {/* Metrics / Tech Stack */}
