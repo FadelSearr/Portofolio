@@ -231,7 +231,7 @@ function About() {
           <div style={{ position: 'absolute', top: -16, left: -16, right: 16, bottom: 16, border: '1px solid #f0eeeb', zIndex: 0 }} />
           <div style={{ position: 'relative', zIndex: 1, overflow: 'hidden', background: '#f5f3ef' }}>
             <img
-              src="https://drive.google.com/thumbnail?id=1IfckHPwMQlkaiD_cHl-pe_T6HGSRBunM&sz=w800"
+              src="https://drive.google.com/thumbnail?id=1qd6uRXAIJum_Zp1ccPzzpCbU39anEF0f&sz=w800"
               alt="Fadel Setiawan Arifin"
               style={{ width: '100%', display: 'block', filter: 'grayscale(15%)' }} />
           </div>
