@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import dellmologyImg from './assets/dellmology.png'
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -18,7 +19,7 @@ const PROJECTS = [
     metrics: [['Next.js', 'Frontend'], ['Python', 'Backend'], ['IDX API', 'Data Source']],
     color: '#f0f4ff',
     accent: '#3b5bdb',
-    img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&h=560&fit=crop&auto=format',
+    img: dellmologyImg,
   },
   {
     id: '002',
