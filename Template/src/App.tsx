@@ -3,81 +3,81 @@ import { useState, useEffect } from 'react'
 // ─── Data ────────────────────────────────────────────────────────────────────
 
 const SERVICES = [
-  { icon: '◈', title: 'Data Analysis & Visualization', desc: 'Power BI, DAX, Star Schema — dashboard interaktif yang mengubah data mentah menjadi insight bisnis.' },
-  { icon: '◈', title: 'Data Extraction & Automation', desc: 'Python, Selenium, Web Scraping — otomasi pengambilan data dari berbagai sumber secara efisien.' },
-  { icon: '◈', title: 'Geospatial & Quantitative Analysis', desc: 'WebGIS, Change Detection, Analisis Kuantitatif — visualisasi data spasial dan analisis pasar keuangan.' },
+  { icon: '◈', title: 'Full-Stack Web Development', desc: 'React, Next.js, TypeScript, Node.js — membangun aplikasi web modern dari frontend hingga backend dengan performa tinggi.' },
+  { icon: '◈', title: 'Backend & API Engineering', desc: 'Python, Go, REST API, SQL/NoSQL — merancang sistem server-side yang skalabel, aman, dan mudah diintegrasikan.' },
+  { icon: '◈', title: 'Data Engineering & Automation', desc: 'ETL Pipeline, Selenium, Power BI, Cloud Services — mengotomasi alur data dan membangun infrastruktur yang efisien.' },
 ]
 
 const PROJECTS = [
   {
     id: '001',
-    title: 'Del_Drive_Tracker',
-    tag: 'System Tracking · 2025',
-    headline: 'Pelacakan & Analisis Utilitas Penyimpanan File',
-    detail: 'Masalah: Kesulitan melacak tren kapasitas penyimpanan yang cepat penuh. Solusi: Mengembangkan sistem pelacakan berbasis TypeScript untuk mencatat riwayat akses dan memprediksi tren pertumbuhan data.',
-    metrics: [['TypeScript', 'Language'], ['Analytics', 'Focus'], ['JSON', 'Data Format']],
-    color: '#eef2ff',
-    accent: '#4f46e5',
-    img: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=900&h=560&fit=crop&auto=format',
-  },
-  {
-    id: '002',
     title: 'Dellmology',
-    tag: 'FinTech · 2026',
-    headline: 'Market Intelligence & Screener Saham BEI',
-    detail: 'Masalah: Investor ritel buta arah pergerakan dana besar. Solusi: Menganalisis jutaan baris data transaksi saham IDX untuk mendeteksi aliran uang institusi (bandarmology) dan anomali pasar harian.',
-    metrics: [['IDX', 'Data Source'], ['Python', 'Engine'], ['Next.js', 'Dashboard']],
+    tag: 'Full-Stack FinTech App · 2026',
+    headline: 'Platform Market Intelligence Saham BEI',
+    detail: 'Tantangan: Investor ritel tidak punya akses ke alat analisis dana besar. Solusi: Membangun web app full-stack Next.js + Python backend untuk memproses jutaan baris data IDX secara real-time, mendeteksi pola bandarmologi dan anomali pasar.',
+    metrics: [['Next.js', 'Frontend'], ['Python', 'Backend'], ['IDX API', 'Data Source']],
     color: '#f0f4ff',
     accent: '#3b5bdb',
     img: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=900&h=560&fit=crop&auto=format',
   },
   {
-    id: '003',
-    title: 'Power BI Dashboard',
-    tag: 'Business Intelligence · 2026',
-    headline: 'Global Superstore Analytics (Star Schema & DAX)',
-    detail: 'Masalah: Data penjualan mentah gagal memberikan gambaran performa bisnis. Solusi: Merancang arsitektur Star Schema interaktif dengan DAX untuk menghitung KPI kritis yang menunjang keputusan strategis.',
-    metrics: [['Star Schema', 'Model'], ['DAX', 'Calculation'], ['Power BI', 'Tool']],
-    color: '#f0fdf4',
-    accent: '#16a34a',
-    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=560&fit=crop&auto=format',
-  },
-  {
-    id: '004',
-    title: 'IKN Change Detection',
-    tag: 'Geospatial · 2026',
-    headline: 'Deteksi Perubahan Area Terbangun di Nusantara',
-    detail: 'Masalah: Kurangnya pantauan visual yang akurat terkait progres fisik IKN. Solusi: Memproses citra satelit multi-temporal untuk memvisualisasikan perubahan tutupan lahan dan area terbangun secara otomatis.',
-    metrics: [['GIS', 'Spatial Data'], ['JS', 'Visualization'], ['Satellites', 'Analysis']],
-    color: '#fefce8',
-    accent: '#ca8a04',
-    img: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=900&h=560&fit=crop&auto=format',
-  },
-  {
-    id: '005',
+    id: '002',
     title: 'WebGIS Munich',
-    tag: 'GIS · 2026',
-    headline: 'Platform Pemetaan Regional Kota Munich',
-    detail: 'Masalah: Data demografi kota berbentuk tabel menyulitkan perencanaan area. Solusi: Membangun layer peta interaktif WebGIS untuk menganalisis kepadatan perkotaan secara spasial.',
-    metrics: [['Leaflet', 'Map Engine'], ['POI', 'Data Points'], ['Mapbox', 'Tiles']],
+    tag: 'Web App · GIS · 2026',
+    headline: 'Platform Pemetaan Interaktif Kota Munich',
+    detail: 'Tantangan: Data spasial kota sulit divisualisasikan untuk perencanaan. Solusi: Mengembangkan aplikasi WebGIS berbasis Leaflet.js dan Mapbox dengan layer interaktif untuk analisis kepadatan dan POI perkotaan.',
+    metrics: [['Leaflet.js', 'Map Engine'], ['JavaScript', 'Language'], ['Mapbox', 'Tile Server']],
     color: '#fdf2f8',
     accent: '#db2777',
     img: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=900&h=560&fit=crop&auto=format',
   },
   {
-    id: '006',
+    id: '003',
+    title: 'Del_Drive_Tracker',
+    tag: 'CLI Tool · TypeScript · 2025',
+    headline: 'Sistem Monitoring & Analisis Penyimpanan File',
+    detail: 'Tantangan: Tidak ada cara efisien memantau pertumbuhan data drive secara historis. Solusi: Membangun CLI tool TypeScript yang mencatat, menganalisis, dan memvisualisasikan tren kapasitas penyimpanan dengan output laporan otomatis.',
+    metrics: [['TypeScript', 'Language'], ['Node.js', 'Runtime'], ['JSON', 'Storage']],
+    color: '#eef2ff',
+    accent: '#4f46e5',
+    img: 'https://images.unsplash.com/photo-1544383835-bda2bc66a55d?w=900&h=560&fit=crop&auto=format',
+  },
+  {
+    id: '004',
     title: 'ERP-Data-Migration-Validation',
-    tag: 'Data Engineering · 2026',
-    headline: 'ERP Data Validation Simulation',
-    detail: 'Masalah: Risiko hilangnya atau rusaknya data sangat tinggi saat migrasi sistem ERP. Solusi: Membuat automasi validasi menggunakan Python Faker untuk mendeteksi ketidaksesuaian data antar sistem.',
-    metrics: [['Python', 'Scripting'], ['Faker', 'Data Gen'], ['Validation', 'Process']],
+    tag: 'Backend · Python · 2026',
+    headline: 'Sistem Validasi & Migrasi Data ERP Otomatis',
+    detail: 'Tantangan: Migrasi sistem ERP berisiko tinggi menyebabkan data rusak atau hilang. Solusi: Membangun pipeline validasi otomatis dengan Python yang mensimulasikan dan memverifikasi integritas data lintas sistem menggunakan Faker & custom assertion engine.',
+    metrics: [['Python', 'Core'], ['Faker', 'Data Gen'], ['Pandas', 'Validation']],
     color: '#fff4e6',
     accent: '#e67700',
     img: 'https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=900&h=560&fit=crop&auto=format',
   },
+  {
+    id: '005',
+    title: 'IKN Change Detection',
+    tag: 'Geospatial Web App · 2026',
+    headline: 'Aplikasi Deteksi Perubahan Lahan via Citra Satelit',
+    detail: 'Tantangan: Progres pembangunan IKN sulit dipantau tanpa alat visualisasi real-time. Solusi: Mengintegrasikan citra satelit multi-temporal ke aplikasi web untuk otomasi deteksi perubahan tutupan lahan dengan algoritma change detection.',
+    metrics: [['JavaScript', 'Frontend'], ['GIS', 'Spatial Engine'], ['Satellite API', 'Data']],
+    color: '#fefce8',
+    accent: '#ca8a04',
+    img: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=900&h=560&fit=crop&auto=format',
+  },
+  {
+    id: '006',
+    title: 'Power BI Dashboard',
+    tag: 'BI Engineering · 2026',
+    headline: 'Arsitektur Data Star Schema & DAX untuk Superstore',
+    detail: 'Tantangan: Data penjualan mentah tidak memberikan nilai bisnis. Solusi: Merancang arsitektur data warehouse Star Schema dan mengimplementasikan formula DAX kompleks untuk KPI dashboard yang digunakan pengambil keputusan.',
+    metrics: [['Power BI', 'Tool'], ['DAX', 'Language'], ['Star Schema', 'Architecture']],
+    color: '#f0fdf4',
+    accent: '#16a34a',
+    img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=560&fit=crop&auto=format',
+  },
 ]
 
-const STACK = ['Python', 'Power BI', 'DAX', 'SQL', 'JavaScript', 'TypeScript', 'Selenium', 'Next.js', 'Leaflet', 'Mapbox', 'Golang', 'Git']
+const STACK = ['TypeScript', 'React', 'Next.js', 'Node.js', 'Python', 'Go', 'PostgreSQL', 'SQL', 'REST API', 'Git', 'Docker', 'Leaflet.js', 'Selenium', 'Power BI']
 
 // ─── Nav ─────────────────────────────────────────────────────────────────────
 
@@ -176,7 +176,7 @@ function Hero() {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 0, marginBottom: 64, paddingTop: 0 }}>
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', width: '100%', flexWrap: 'wrap', gap: 20 }}>
           <h1 style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 700, letterSpacing: '-0.04em', lineHeight: 0.95, color: '#0a0a0a', fontSize: 'clamp(56px, 9vw, 112px)', marginBottom: 0 }}>
-            Data
+            Full-Stack
           </h1>
           {/* Top strip */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: 8, paddingBottom: 15, alignItems: 'flex-end' }}>
@@ -188,19 +188,19 @@ function Hero() {
           </div>
         </div>
         <h1 style={{ fontFamily: 'Lora, serif', fontWeight: 400, letterSpacing: '-0.02em', lineHeight: 0.95, color: '#0a0a0a', fontStyle: 'italic', fontSize: 'clamp(56px, 9vw, 112px)', marginBottom: 8, marginTop: 8 }}>
-          Analyst
+          Developer
         </h1>
         <h1 style={{ fontFamily: 'Outfit, sans-serif', fontWeight: 300, letterSpacing: '-0.04em', lineHeight: 0.95, color: '#b0aca4', fontSize: 'clamp(56px, 9vw, 112px)' }}>
-          & Developer.
+          & Engineer.
         </h1>
       </div>
 
       {/* Bottom row */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, alignItems: 'end' }}>
         <p style={{ fontSize: 16, lineHeight: 1.75, color: '#666', maxWidth: 420 }}>
-          Mahasiswa Sistem Informasi dengan spesialisasi analisis data dan visualisasi interaktif
-          menggunakan Power BI. Berpengalaman mengekstrak data otomatis via Python & Selenium.
-          serta mengolah dataset kompleks dari data pasar keuangan hingga data spasial.
+          Mahasiswa Sistem Informasi yang membangun aplikasi web full-stack dari nol —
+          dari backend API hingga antarmuka yang intuitif. Berpengalaman menggunakan
+          TypeScript, React, Python, dan Go untuk memecahkan masalah nyata dengan kode.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-end' }}>
           <button onClick={() => document.getElementById('proyek')?.scrollIntoView({ behavior: 'smooth' })}
@@ -220,7 +220,7 @@ function Hero() {
 
       {/* Divider with stats */}
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 1, marginTop: 80, background: '#f0eeeb' }}>
-        {[['5+', 'Proyek Analisis'], ['Power BI', 'Dashboard Expert'], ['Python', 'Data Automation'], ['GIS', 'Spatial Analysis']].map(([v, l]) => (
+        {[['6+', 'Proyek Aktif'], ['Full-Stack', 'Web Developer'], ['TypeScript', 'Primary Language'], ['API', 'Backend Engineering']].map(([v, l]) => (
           <div key={l} style={{ padding: '24px 20px', background: '#fff' }}>
             <div style={{ fontFamily: 'Lora', fontSize: 28, fontStyle: 'italic', color: '#0a0a0a', marginBottom: 4 }}>{v}</div>
             <div style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#aaa', letterSpacing: '0.08em', textTransform: 'uppercase' }}>{l}</div>
@@ -257,18 +257,18 @@ function About() {
         <div>
           <p style={{ fontFamily: 'JetBrains Mono', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', marginBottom: 16 }}>Tentang Saya</p>
           <h2 style={{ fontFamily: 'Lora', fontStyle: 'italic', fontSize: 'clamp(32px, 2.5vw, 40px)', lineHeight: 1.25, color: '#0a0a0a', marginBottom: 24 }}>
-            Data analyst yang percaya bahwa <em>setiap angka punya cerita.</em>
+            Developer yang percaya bahwa <em>kode terbaik memecahkan masalah nyata.</em>
           </h2>
           <p style={{ fontSize: 15, lineHeight: 1.85, color: '#666', marginBottom: 16 }}>
-            Mahasiswa Sistem Informasi di Universitas Bakrie (Angkatan 2023) dengan fokus
-            pada analisis data, business intelligence, dan pengembangan web. Berpengalaman
-            membangun dashboard Power BI, platform analisis pasar keuangan, dan sistem
-            deteksi perubahan spasial.
+            Mahasiswa Sistem Informasi di Universitas Bakrie (Angkatan 2023) yang passionate
+            membangun produk digital — dari web app full-stack, CLI tool, hingga platform
+            geospasial interaktif. Menulis kode bukan hanya untuk menyelesaikan tugas,
+            tapi untuk menciptakan sesuatu yang benar-benar berjalan di dunia nyata.
           </p>
           <p style={{ fontSize: 15, lineHeight: 1.85, color: '#666', marginBottom: 40 }}>
-            Menguasai pemodelan data Star Schema, formula DAX tingkat lanjut, otomasi
-            data extraction dengan Python & Selenium, serta visualisasi data geospasial
-            menggunakan WebGIS. Percaya bahwa data yang tepat menghasilkan keputusan yang tepat.
+            Menguasai TypeScript/React untuk frontend, Python & Go untuk backend dan
+            otomasi, serta SQL/PostgreSQL untuk manajemen data. Setiap proyek dimulai
+            dengan memahami masalah, bukan langsung menulis kode.
           </p>
 
           {/* Stack badges */}
@@ -296,7 +296,7 @@ function Services() {
           <p style={{ fontFamily: 'JetBrains Mono', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', marginBottom: 16 }}>Key Competencies</p>
           <h2 style={{ fontFamily: 'Lora', fontStyle: 'italic', fontSize: 'clamp(32px, 3vw, 44px)', lineHeight: 1.2, color: '#0a0a0a', marginBottom: 20 }}>Keahlian &amp; Spesialisasi</h2>
           <p style={{ fontSize: 14, lineHeight: 1.8, color: '#888' }}>
-            Menggabungkan kemampuan teknis analisis data dengan pemahaman bisnis — mengubah data mentah menjadi keputusan strategis.
+            Menggabungkan kemampuan engineering software dengan pemahaman sistem — membangun produk yang bukan hanya berjalan, tetapi berskala dan mudah dikelola.
           </p>
         </div>
         <div style={{ display: 'grid', gap: 1, background: '#f0eeeb' }}>
@@ -429,7 +429,7 @@ function Projects() {
                 </p>
 
                 {/* Metrics / Tech Stack */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, borderTop: '1px solid #1f1f26', paddingTop: 16 }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, borderTop: '1px solid #1f1f26', paddingTop: 16, marginBottom: 20 }}>
                   {p.metrics.map(([v]) => (
                     <span key={v} style={{
                       fontFamily: 'JetBrains Mono',
@@ -445,6 +445,7 @@ function Projects() {
                   ))}
                 </div>
               </div>
+
             </a>
           )
         })}
@@ -506,10 +507,10 @@ function Contact() {
         <div>
           <p style={{ fontFamily: 'JetBrains Mono', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', marginBottom: 16 }}>Hubungi Saya</p>
           <h2 style={{ fontFamily: 'Lora', fontStyle: 'italic', fontSize: 'clamp(32px, 3vw, 48px)', lineHeight: 1.15, color: '#0a0a0a', marginBottom: 24 }}>
-            Punya proyek data?<br />Mari berdiskusi.
+            Punya ide produk?<br />Mari bangun bersama.
           </h2>
           <p style={{ fontSize: 15, lineHeight: 1.8, color: '#888', maxWidth: 380, marginBottom: 48 }}>
-            Terbuka untuk posisi Data Analyst, BI Developer, magang, dan kolaborasi proyek data. Balas dalam 24 jam.
+            Terbuka untuk posisi IT Developer, Full-Stack Engineer, magang, dan kolaborasi pengembangan produk digital. Balas dalam 24 jam.
           </p>
 
           <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -566,16 +567,17 @@ function Contact() {
                 <select value={form.type} onChange={(e) => setForm({ ...form, type: e.target.value })}
                   style={{ ...inp, appearance: 'none' as const, cursor: 'pointer' }}>
                   <option value="">Pilih kategori...</option>
-                  <option>Data Analyst Position</option>
-                  <option>BI Dashboard Project</option>
-                  <option>Internship / Magang</option>
-                  <option>Freelance Data Project</option>
-                  <option>Collaboration</option>
+                  <option>IT Developer / Software Engineer Position</option>
+                  <option>Full-Stack Web Development</option>
+                  <option>Backend API Development</option>
+                  <option>Internship / Magang IT</option>
+                  <option>Freelance Project</option>
+                  <option>Collaboration / Open Source</option>
                 </select>
               </div>
               <div>
                 <label style={{ fontFamily: 'JetBrains Mono', fontSize: 10, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', display: 'block', marginBottom: 8 }}>Pesan</label>
-                <textarea rows={6} required placeholder="Ceritakan kebutuhan data Anda..." value={form.message}
+                <textarea rows={6} required placeholder="Ceritakan proyek atau kebutuhan pengembangan Anda..." value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   style={{ ...inp, resize: 'vertical' }}
                   onFocus={(e) => (e.currentTarget.style.borderColor = '#0a0a0a')}
