@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import dellmologyImg from './assets/dellmology.png'
+import webgisImg from './assets/webgis-munich.jpg'
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -30,7 +31,7 @@ const PROJECTS = [
     metrics: [['Leaflet.js', 'Map Engine'], ['JavaScript', 'Language'], ['Mapbox', 'Tile Server']],
     color: '#fdf2f8',
     accent: '#db2777',
-    img: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?w=900&h=560&fit=crop&auto=format',
+    img: webgisImg,
   },
   {
     id: '003',
