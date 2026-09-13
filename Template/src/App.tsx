@@ -3,6 +3,13 @@ import dellmologyImg from './assets/dellmology.png'
 import webgisImg from './assets/webgis-munich.jpg'
 import certKarirnex from './assets/certificate-karirnex.jpg'
 import certDibimbing from './assets/certificate-dibimbing.jpg'
+import certBytecamp from './assets/sertifikat-bytecamp.jpg'
+import certGuestLecture from './assets/sertifikat-guest-lecture.jpg'
+import certMindshare from './assets/sertifikat-mindshare.jpg'
+import certIeee from './assets/sertifikat-ieee.jpg'
+import certLeadership from './assets/sertifikat-leadership-problem-solving.jpg'
+import certTeamwork from './assets/sertifikat-teamwork-conflict-resolution.jpg'
+import certDesignThinking from './assets/sertifikat-design-thinking.jpg'
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -104,6 +111,48 @@ const CERTIFICATES = [
     issuer: 'Dibimbing.id',
     desc: 'Sertifikat penyelesaian program pelatihan intensif dari Dibimbing.id untuk meningkatkan skill digital dan profesional.',
     img: certDibimbing,
+  },
+  {
+    title: 'Bytecamp Certificate',
+    issuer: 'Bytecamp',
+    desc: 'Sertifikat kepesertaan dan pencapaian pada program pelatihan teknologi dari Bytecamp.',
+    img: certBytecamp,
+  },
+  {
+    title: 'Guest Lecture: Dari Data ke Solusi Bisnis',
+    issuer: 'Guest Lecture Series',
+    desc: 'Sertifikat mengenai Peran Informasi Bisnis, Analisis Perancangan, dan AI di Dunia Kerja.',
+    img: certGuestLecture,
+  },
+  {
+    title: 'Mindshare Certificate',
+    issuer: 'Mindshare',
+    desc: 'Sertifikat partisipasi pelatihan dan sesi pengetahuan industri dari Mindshare.',
+    img: certMindshare,
+  },
+  {
+    title: 'Step Into The Future Tech With IEEE',
+    issuer: 'IEEE',
+    desc: 'Sertifikat partisipasi workshop & seminar mengenai tren teknologi masa depan bersama IEEE.',
+    img: certIeee,
+  },
+  {
+    title: 'Leadership & Problem Solving',
+    issuer: 'Soft Skill Workshop',
+    desc: 'Sertifikat pengembangan kepemimpinan dan metodologi pemecahan masalah secara terstruktur.',
+    img: certLeadership,
+  },
+  {
+    title: 'Teamwork, Conflict Resolution, & Negotiation',
+    issuer: 'Soft Skill Workshop',
+    desc: 'Sertifikat pelatihan kolaborasi tim, resolusi konflik, dan kemampuan negosiasi efektif.',
+    img: certTeamwork,
+  },
+  {
+    title: 'Design Thinking',
+    issuer: 'Innovation & UX Workshop',
+    desc: 'Sertifikat pemahaman metodologi Design Thinking dalam pemecahan masalah berorientasi pengguna.',
+    img: certDesignThinking,
   },
 ]
 
