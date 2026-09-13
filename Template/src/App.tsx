@@ -84,6 +84,11 @@ const PROJECTS = [
     color: '#f0fdf4',
     accent: '#16a34a',
     img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=560&fit=crop&auto=format',
+    docs: [
+      { name: 'DAX Report', desc: 'Implementasi formula DAX tingkat lanjut untuk kalkulasi KPI', file: 'bi/dax-report.pdf' },
+      { name: 'BI Q&A', desc: 'Dokumentasi tanya jawab dan analisis Business Intelligence', file: 'bi/bi-qna.pdf' },
+      { name: 'Star Schema', desc: 'Arsitektur data warehouse Star Schema design', file: 'bi/star-schema.pdf' },
+    ],
   },
 ]
 
@@ -354,28 +359,14 @@ function ServiceRow({ icon, title, desc }: { icon: string; title: string; desc: 
 
 function ProjectCard({ p }: { p: typeof PROJECTS[number] }) {
   const [hovered, setHovered] = useState(false)
+  const [showDocs, setShowDocs] = useState(false)
 
-  return (
-    <a
-      href={`https://github.com/FadelSearr/${p.title === 'Power BI Dashboard' ? 'Portofolio' : p.title.replace(/ /g, '_')}`}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="project-card"
-      style={{
-        textDecoration: 'none',
-        background: '#0d0d12',
-        borderRadius: 16,
-        border: `1px solid ${hovered ? p.accent : '#1f1f26'}`,
-        overflow: 'hidden',
-        display: 'flex',
-        flexDirection: 'column',
-        transition: 'all 0.35s ease',
-        boxShadow: hovered ? `0 12px 30px ${p.accent}20` : '0 4px 20px rgba(0,0,0,0.1)',
-        transform: hovered ? 'translateY(-6px)' : 'translateY(0)',
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
+  const hasDocs = 'docs' in p && Array.isArray((p as any).docs)
+  const docs = hasDocs ? (p as any).docs as { name: string; desc: string; file: string }[] : []
+  const basePath = import.meta.env.BASE_URL
+
+  const cardContent = (
+    <>
       {/* Preview Image */}
       <div style={{ height: 210, overflow: 'hidden', position: 'relative', background: '#13131a', borderBottom: '1px solid #1f1f26' }}>
         <img
@@ -396,10 +387,11 @@ function ProjectCard({ p }: { p: typeof PROJECTS[number] }) {
           <span style={{
             fontFamily: 'JetBrains Mono', fontSize: 9, fontWeight: 600,
             letterSpacing: '0.05em',
-            background: 'rgba(59, 91, 219, 0.1)', color: '#748ffc',
+            background: hasDocs ? 'rgba(34,197,94,0.1)' : 'rgba(59, 91, 219, 0.1)',
+            color: hasDocs ? '#4ade80' : '#748ffc',
             padding: '4px 10px', borderRadius: 4, textTransform: 'uppercase',
           }}>
-            GitHub Repo
+            {hasDocs ? '📄 Dokumentasi' : 'GitHub Repo'}
           </span>
           <span style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#4e4e5e' }}>
             {p.tag}
@@ -484,7 +476,166 @@ function ProjectCard({ p }: { p: typeof PROJECTS[number] }) {
           ))}
         </div>
       </div>
-    </a>
+    </>
+  )
+
+  const cardStyle: React.CSSProperties = {
+    textDecoration: 'none',
+    background: '#0d0d12',
+    borderRadius: 16,
+    border: `1px solid ${hovered ? p.accent : '#1f1f26'}`,
+    overflow: 'hidden',
+    display: 'flex',
+    flexDirection: 'column',
+    transition: 'all 0.35s ease',
+    boxShadow: hovered ? `0 12px 30px ${p.accent}20` : '0 4px 20px rgba(0,0,0,0.1)',
+    transform: hovered ? 'translateY(-6px)' : 'translateY(0)',
+    cursor: 'pointer',
+    color: 'inherit',
+  }
+
+  return (
+    <>
+      {hasDocs ? (
+        <div
+          className="project-card"
+          style={cardStyle}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          onClick={() => setShowDocs(true)}
+        >
+          {cardContent}
+        </div>
+      ) : (
+        <a
+          href={`https://github.com/FadelSearr/${p.title.replace(/ /g, '_')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="project-card"
+          style={cardStyle}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
+          {cardContent}
+        </a>
+      )}
+
+      {/* Docs Modal */}
+      {showDocs && (
+        <div
+          onClick={() => setShowDocs(false)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 9999,
+            background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(12px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: 32, animation: 'fadeIn 0.25s ease',
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: '#0d0d12', border: '1px solid #1f1f26',
+              borderRadius: 20, maxWidth: 560, width: '100%',
+              padding: 0, overflow: 'hidden',
+              boxShadow: `0 24px 60px rgba(0,0,0,0.5), 0 0 40px ${p.accent}15`,
+            }}
+          >
+            {/* Modal Header */}
+            <div style={{
+              padding: '28px 32px 20px', borderBottom: '1px solid #1f1f26',
+              display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
+            }}>
+              <div>
+                <p style={{
+                  fontFamily: 'JetBrains Mono', fontSize: 9, fontWeight: 600,
+                  letterSpacing: '0.08em', textTransform: 'uppercase',
+                  color: p.accent, marginBottom: 8,
+                }}>
+                  📄 Dokumentasi Proyek
+                </p>
+                <h3 style={{
+                  fontFamily: 'Outfit, sans-serif', fontWeight: 600, fontSize: 22,
+                  color: '#fff', lineHeight: 1.3,
+                }}>
+                  {p.title}
+                </h3>
+                <p style={{
+                  fontFamily: 'JetBrains Mono', fontSize: 10, color: '#6e6e7e',
+                  marginTop: 4,
+                }}>
+                  {p.headline}
+                </p>
+              </div>
+              <button
+                onClick={() => setShowDocs(false)}
+                style={{
+                  width: 36, height: 36, borderRadius: '50%',
+                  background: 'rgba(255,255,255,0.06)', border: '1px solid #1f1f26',
+                  color: '#888', fontSize: 16, cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transition: 'all 0.2s', flexShrink: 0,
+                }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = '#fff' }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.color = '#888' }}
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Doc List */}
+            <div style={{ padding: '8px 16px 16px' }}>
+              {docs.map((doc, i) => (
+                <a
+                  key={i}
+                  href={`${basePath}${doc.file}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'flex', alignItems: 'center', gap: 16,
+                    padding: '18px 16px', borderRadius: 12,
+                    textDecoration: 'none', transition: 'background 0.2s',
+                    background: 'transparent',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.background = 'rgba(255,255,255,0.04)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
+                >
+                  {/* PDF Icon */}
+                  <div style={{
+                    width: 44, height: 44, borderRadius: 10,
+                    background: `${p.accent}15`, border: `1px solid ${p.accent}30`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    fontSize: 20, flexShrink: 0,
+                  }}>
+                    📑
+                  </div>
+                  <div style={{ flexGrow: 1, minWidth: 0 }}>
+                    <p style={{
+                      fontFamily: 'Outfit, sans-serif', fontWeight: 600,
+                      fontSize: 14, color: '#fff', marginBottom: 3,
+                    }}>
+                      {doc.name}
+                    </p>
+                    <p style={{
+                      fontFamily: 'JetBrains Mono', fontSize: 10,
+                      color: '#6e6e7e', lineHeight: 1.4,
+                    }}>
+                      {doc.desc}
+                    </p>
+                  </div>
+                  {/* Arrow */}
+                  <span style={{
+                    fontFamily: 'JetBrains Mono', fontSize: 11,
+                    color: p.accent, flexShrink: 0,
+                  }}>
+                    Lihat →
+                  </span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
 
