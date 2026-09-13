@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import dellmologyImg from './assets/dellmology.png'
 import webgisImg from './assets/webgis-munich.jpg'
+import certKarirnex from './assets/certificate-karirnex.jpg'
+import certDibimbing from './assets/certificate-dibimbing.jpg'
 
 // ─── Data ────────────────────────────────────────────────────────────────────
 
@@ -16,7 +18,8 @@ const PROJECTS = [
     title: 'Dellmology',
     tag: 'Full-Stack FinTech App · 2026',
     headline: 'Platform Market Intelligence Saham BEI',
-    detail: 'Mengembangkan web app full-stack berbasis Next.js dan Python untuk menganalisis jutaan transaksi saham IDX secara real-time. Mengimplementasikan algoritma deteksi pola aliran dana institusi (bandarmologi) dengan visualisasi dashboard interaktif.',
+    problem: 'Investor retail Indonesia kesulitan membaca pola aliran dana institusi (bandar) di pasar saham BEI — data transaksi tersebar, sulit dianalisis, dan tools yang ada terlalu mahal atau tidak transparan.',
+    research: 'Riset dimulai dari mempelajari pola transaksi broker summary IDX dan teknik bandarmologi. Dipilih Next.js + Python karena butuh SSR untuk SEO dan Python unggul di data processing. Arsitektur real-time pipeline dipilih agar data selalu fresh tanpa polling manual.',
     metrics: [['Next.js', 'Frontend'], ['Python', 'Backend'], ['IDX API', 'Data Source']],
     color: '#f0f4ff',
     accent: '#3b5bdb',
@@ -27,7 +30,8 @@ const PROJECTS = [
     title: 'WebGIS Munich',
     tag: 'Web App · GIS · 2026',
     headline: 'Platform Pemetaan Interaktif Kota Munich',
-    detail: 'Membangun aplikasi WebGIS berbasis Leaflet.js dan Mapbox dengan fitur layer interaktif, filter POI, dan analisis kepadatan perkotaan. Mengintegrasikan data spasial real-world untuk mendukung perencanaan dan pengambilan keputusan berbasis lokasi.',
+    problem: 'Data geospasial kota Munich tersebar di berbagai sumber dan sulit divisualisasikan secara interaktif — urban planner butuh satu platform terpadu untuk analisis kepadatan dan POI.',
+    research: 'Membandingkan Leaflet.js vs OpenLayers vs Mapbox GL — Leaflet dipilih karena ringan dan ekosistem plugin yang mature. Mapbox sebagai tile server karena kualitas rendering dan dukungan custom styling. Data spasial diproses menggunakan GeoJSON untuk interoperabilitas.',
     metrics: [['Leaflet.js', 'Map Engine'], ['JavaScript', 'Language'], ['Mapbox', 'Tile Server']],
     color: '#fdf2f8',
     accent: '#db2777',
@@ -38,7 +42,8 @@ const PROJECTS = [
     title: 'Del_Drive_Tracker',
     tag: 'CLI Tool · TypeScript · 2025',
     headline: 'Sistem Monitoring & Analisis Penyimpanan File',
-    detail: 'Merancang dan membangun CLI tool berbasis TypeScript untuk monitoring kapasitas storage secara historis dengan output laporan otomatis. Menerapkan arsitektur data berbasis JSON yang efisien untuk pencatatan tren pertumbuhan data jangka panjang.',
+    problem: 'Tidak ada cara mudah untuk memantau pertumbuhan storage secara historis di lingkungan lokal — pengguna baru sadar disk penuh setelah terlambat, tanpa data tren untuk perencanaan kapasitas.',
+    research: 'Riset terhadap tools monitoring yang ada (du, ncdu, WinDirStat) menunjukkan tidak ada yang menyimpan data historis. TypeScript dipilih agar type-safe dan mudah di-maintain. JSON dipilih sebagai format penyimpanan karena lightweight dan human-readable tanpa perlu database.',
     metrics: [['TypeScript', 'Language'], ['Node.js', 'Runtime'], ['JSON', 'Storage']],
     color: '#eef2ff',
     accent: '#4f46e5',
@@ -49,7 +54,8 @@ const PROJECTS = [
     title: 'ERP-Data-Migration-Validation',
     tag: 'Backend · Python · 2026',
     headline: 'Sistem Validasi & Migrasi Data ERP Otomatis',
-    detail: 'Membangun pipeline validasi data otomatis menggunakan Python, Faker, dan Pandas untuk mensimulasikan dan memverifikasi integritas data lintas sistem ERP. Mereduksi risiko data loss saat migrasi melalui custom assertion engine dan laporan anomali terstruktur.',
+    problem: 'Migrasi data antar sistem ERP rawan kehilangan data dan inkonsistensi — proses validasi manual memakan waktu berhari-hari dan masih sering melewatkan anomali kritis.',
+    research: 'Mempelajari pola kegagalan migrasi ERP dari case study industri — mayoritas masalah berasal dari data format mismatch dan missing references. Faker dipilih untuk generate test data realistis, Pandas untuk assertion engine karena kemampuan DataFrame comparison yang powerful.',
     metrics: [['Python', 'Core'], ['Faker', 'Data Gen'], ['Pandas', 'Validation']],
     color: '#fff4e6',
     accent: '#e67700',
@@ -60,7 +66,8 @@ const PROJECTS = [
     title: 'IKN Change Detection',
     tag: 'Geospatial Web App · 2026',
     headline: 'Aplikasi Deteksi Perubahan Lahan via Citra Satelit',
-    detail: 'Mengintegrasikan citra satelit multi-temporal ke dalam aplikasi web berbasis JavaScript untuk mendeteksi dan memvisualisasikan perubahan tutupan lahan secara otomatis. Menerapkan algoritma change detection pada data geospasial untuk monitoring progres pembangunan IKN.',
+    problem: 'Monitoring progres pembangunan IKN membutuhkan analisis perubahan tutupan lahan yang akurat — metode survei lapangan terlalu lambat dan mahal untuk area seluas itu.',
+    research: 'Riset teknik remote sensing change detection (NDVI differencing, image classification). JavaScript dipilih untuk aksesibilitas browser-based. Satelit data API dipilih karena menyediakan citra multi-temporal gratis dengan resolusi cukup untuk urban change monitoring.',
     metrics: [['JavaScript', 'Frontend'], ['GIS', 'Spatial Engine'], ['Satellite API', 'Data']],
     color: '#fefce8',
     accent: '#ca8a04',
@@ -71,11 +78,27 @@ const PROJECTS = [
     title: 'Power BI Dashboard',
     tag: 'BI Engineering · 2026',
     headline: 'Arsitektur Data Star Schema & DAX untuk Superstore',
-    detail: 'Merancang arsitektur data warehouse Star Schema dan mengimplementasikan formula DAX tingkat lanjut untuk membangun KPI dashboard interaktif di Power BI. Dashboard digunakan untuk memantau performa penjualan, profitabilitas, dan tren regional secara real-time.',
+    problem: 'Manajemen tidak memiliki visibilitas real-time terhadap performa penjualan lintas regional — laporan manual dibuat mingguan, terlalu lambat untuk pengambilan keputusan strategis.',
+    research: 'Menganalisis kebutuhan KPI bisnis dan merancang Star Schema dari normalized data. DAX dipilih karena kemampuan kalkulasi kontekstual yang tidak bisa dilakukan SQL biasa. Power BI dipilih karena integrasi native dengan ekosistem Microsoft yang sudah dipakai stakeholder.',
     metrics: [['Power BI', 'Tool'], ['DAX', 'Language'], ['Star Schema', 'Architecture']],
     color: '#f0fdf4',
     accent: '#16a34a',
     img: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&h=560&fit=crop&auto=format',
+  },
+]
+
+const CERTIFICATES = [
+  {
+    title: 'Karirnex Certificate',
+    issuer: 'Karirnex',
+    desc: 'Sertifikat pelatihan profesional dari Karirnex untuk pengembangan kompetensi di bidang teknologi informasi.',
+    img: certKarirnex,
+  },
+  {
+    title: 'Dibimbing Certificate',
+    issuer: 'Dibimbing.id',
+    desc: 'Sertifikat penyelesaian program pelatihan intensif dari Dibimbing.id untuk meningkatkan skill digital dan profesional.',
+    img: certDibimbing,
   },
 ]
 
@@ -118,7 +141,7 @@ function Nav() {
 
         {/* Desktop links */}
         <nav style={{ display: 'flex', alignItems: 'center', gap: 32 }} className="hidden-mobile">
-          {['Keahlian', 'Proyek', 'Tentang', 'Kontak'].map((l) => (
+          {['Keahlian', 'Proyek', 'Sertifikat', 'Tentang', 'Kontak'].map((l) => (
             <button key={l} onClick={() => go(l.toLowerCase())}
               style={{ fontFamily: 'JetBrains Mono', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#666', background: 'none', border: 'none', cursor: 'pointer', transition: 'color 0.2s' }}
               onMouseEnter={(e) => (e.currentTarget.style.color = '#0a0a0a')}
@@ -329,6 +352,142 @@ function ServiceRow({ icon, title, desc }: { icon: string; title: string; desc: 
 
 // ─── Projects ─────────────────────────────────────────────────────────────────
 
+function ProjectCard({ p }: { p: typeof PROJECTS[number] }) {
+  const [hovered, setHovered] = useState(false)
+
+  return (
+    <a
+      href={`https://github.com/FadelSearr/${p.title === 'Power BI Dashboard' ? 'Portofolio' : p.title.replace(/ /g, '_')}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="project-card"
+      style={{
+        textDecoration: 'none',
+        background: '#0d0d12',
+        borderRadius: 16,
+        border: `1px solid ${hovered ? p.accent : '#1f1f26'}`,
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        transition: 'all 0.35s ease',
+        boxShadow: hovered ? `0 12px 30px ${p.accent}20` : '0 4px 20px rgba(0,0,0,0.1)',
+        transform: hovered ? 'translateY(-6px)' : 'translateY(0)',
+      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {/* Preview Image */}
+      <div style={{ height: 210, overflow: 'hidden', position: 'relative', background: '#13131a', borderBottom: '1px solid #1f1f26' }}>
+        <img
+          src={p.img}
+          alt={p.title}
+          style={{
+            width: '100%', height: '100%', objectFit: 'cover',
+            opacity: 0.85, transition: 'transform 0.4s ease',
+            transform: hovered ? 'scale(1.04)' : 'scale(1)',
+          }}
+        />
+      </div>
+
+      {/* Card Content */}
+      <div style={{ padding: 24, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
+        {/* Badge */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
+          <span style={{
+            fontFamily: 'JetBrains Mono', fontSize: 9, fontWeight: 600,
+            letterSpacing: '0.05em',
+            background: 'rgba(59, 91, 219, 0.1)', color: '#748ffc',
+            padding: '4px 10px', borderRadius: 4, textTransform: 'uppercase',
+          }}>
+            GitHub Repo
+          </span>
+          <span style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#4e4e5e' }}>
+            {p.tag}
+          </span>
+        </div>
+
+        {/* Title */}
+        <h3 style={{
+          fontFamily: 'Outfit, sans-serif', fontWeight: 600, fontSize: 22,
+          color: '#ffffff', marginBottom: 6, lineHeight: 1.25,
+        }}>
+          {p.title}
+        </h3>
+
+        {/* Headline */}
+        <p style={{
+          fontFamily: 'JetBrains Mono', fontSize: 10, color: '#6e6e7e',
+          letterSpacing: '0.02em', marginBottom: 16,
+        }}>
+          {p.headline}
+        </p>
+
+        {/* Content area with smooth transition */}
+        <div style={{ position: 'relative', flexGrow: 1, minHeight: 100 }}>
+          {/* Problem (default) */}
+          <div style={{
+            opacity: hovered ? 0 : 1,
+            transform: hovered ? 'translateY(-8px)' : 'translateY(0)',
+            transition: 'all 0.35s ease',
+            position: hovered ? 'absolute' : 'relative',
+            inset: hovered ? 0 : undefined,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+              <span style={{
+                fontFamily: 'JetBrains Mono', fontSize: 9, fontWeight: 600,
+                letterSpacing: '0.06em', textTransform: 'uppercase',
+                color: '#f87171', background: 'rgba(248,113,113,0.1)',
+                padding: '3px 8px', borderRadius: 4,
+              }}>
+                ⚡ Masalah
+              </span>
+            </div>
+            <p style={{ fontSize: 13, lineHeight: 1.65, color: '#9e9eaf' }}>
+              {p.problem}
+            </p>
+          </div>
+
+          {/* Research (on hover) */}
+          <div style={{
+            opacity: hovered ? 1 : 0,
+            transform: hovered ? 'translateY(0)' : 'translateY(8px)',
+            transition: 'all 0.35s ease',
+            position: hovered ? 'relative' : 'absolute',
+            inset: hovered ? undefined : 0,
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8 }}>
+              <span style={{
+                fontFamily: 'JetBrains Mono', fontSize: 9, fontWeight: 600,
+                letterSpacing: '0.06em', textTransform: 'uppercase',
+                color: '#a78bfa', background: 'rgba(167,139,250,0.1)',
+                padding: '3px 8px', borderRadius: 4,
+              }}>
+                🔬 Riset & Alasan
+              </span>
+            </div>
+            <p style={{ fontSize: 13, lineHeight: 1.65, color: '#9e9eaf' }}>
+              {p.research}
+            </p>
+          </div>
+        </div>
+
+        {/* Tech Stack */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, borderTop: '1px solid #1f1f26', paddingTop: 16, marginTop: 16 }}>
+          {p.metrics.map(([v]) => (
+            <span key={v} style={{
+              fontFamily: 'JetBrains Mono', fontSize: 10, color: '#8e8e9f',
+              border: '1px solid #1f1f26', padding: '3px 8px',
+              borderRadius: 4, background: '#13131a',
+            }}>
+              {v}
+            </span>
+          ))}
+        </div>
+      </div>
+    </a>
+  )
+}
+
 function Projects() {
   return (
     <section id="proyek" style={{ padding: '120px 32px', maxWidth: 1200, margin: '0 auto', borderTop: '1px solid #f0eeeb' }}>
@@ -338,31 +497,48 @@ function Projects() {
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 32 }}>
-        {PROJECTS.map((p) => {
-          const cardStyle: React.CSSProperties = {
-            textDecoration: 'none',
-            background: '#0d0d12',
-            borderRadius: 16,
-            border: '1px solid #1f1f26',
-            overflow: 'hidden',
-            display: 'flex',
-            flexDirection: 'column',
-            transition: 'all 0.3s ease',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.1)'
-          }
+        {PROJECTS.map((p) => (
+          <ProjectCard key={p.id} p={p} />
+        ))}
+      </div>
+    </section>
+  )
+}
 
-          return (
-            <a
-              key={p.id}
-              href={`https://github.com/FadelSearr/${p.title === 'Power BI Dashboard' ? 'Portofolio' : p.title.replace(/ /g, '_')}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="project-card"
-              style={cardStyle}
+// ─── Certifications ───────────────────────────────────────────────────────────
+
+function Certifications() {
+  const [lightbox, setLightbox] = useState<string | null>(null)
+
+  return (
+    <>
+      <section id="sertifikat" style={{ padding: '120px 32px', maxWidth: 1200, margin: '0 auto', borderTop: '1px solid #f0eeeb' }}>
+        <div style={{ marginBottom: 60 }}>
+          <p style={{ fontFamily: 'JetBrains Mono', fontSize: 11, letterSpacing: '0.1em', textTransform: 'uppercase', color: '#bbb', marginBottom: 16 }}>Training & Certificates</p>
+          <h2 style={{ fontFamily: 'Lora', fontStyle: 'italic', fontSize: 'clamp(32px, 3vw, 44px)', lineHeight: 1.2, color: '#0a0a0a' }}>Pelatihan &amp; Sertifikat</h2>
+        </div>
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: 32 }}>
+          {CERTIFICATES.map((c) => (
+            <div
+              key={c.title}
+              className="cert-card"
+              style={{
+                background: '#0d0d12',
+                borderRadius: 16,
+                border: '1px solid #1f1f26',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+                transition: 'all 0.3s ease',
+                boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+                cursor: 'pointer',
+              }}
+              onClick={() => setLightbox(c.img)}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-6px)';
-                e.currentTarget.style.borderColor = p.accent;
-                e.currentTarget.style.boxShadow = `0 12px 30px ${p.accent}20`;
+                e.currentTarget.style.borderColor = '#3b5bdb';
+                e.currentTarget.style.boxShadow = '0 12px 30px rgba(59,91,219,0.12)';
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
@@ -370,89 +546,104 @@ function Projects() {
                 e.currentTarget.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
               }}
             >
-              {/* Preview Image Container */}
-              <div style={{ height: 210, overflow: 'hidden', position: 'relative', background: '#13131a', borderBottom: '1px solid #1f1f26' }}>
+              {/* Certificate Image */}
+              <div style={{ height: 240, overflow: 'hidden', position: 'relative', background: '#13131a', borderBottom: '1px solid #1f1f26' }}>
                 <img
-                  src={p.img}
-                  alt={p.title}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.85, transition: 'transform 0.4s ease' }}
+                  src={c.img}
+                  alt={c.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.9, transition: 'transform 0.4s ease' }}
                   onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.04)')}
                   onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
                 />
+                {/* Overlay icon */}
+                <div style={{
+                  position: 'absolute', top: 12, right: 12,
+                  width: 32, height: 32, borderRadius: 8,
+                  background: 'rgba(59,91,219,0.15)', backdropFilter: 'blur(8px)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 14, color: '#748ffc',
+                }}>
+                  🔍
+                </div>
               </div>
 
               {/* Card Content */}
               <div style={{ padding: 24, display: 'flex', flexDirection: 'column', flexGrow: 1 }}>
-                {/* Badge */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 14 }}>
                   <span style={{
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: 9,
-                    fontWeight: 600,
-                    letterSpacing: '0.05em',
-                    background: 'rgba(59, 91, 219, 0.1)',
-                    color: '#748ffc',
-                    padding: '4px 10px',
-                    borderRadius: 4,
-                    textTransform: 'uppercase'
+                    fontFamily: 'JetBrains Mono', fontSize: 9, fontWeight: 600,
+                    letterSpacing: '0.05em', background: 'rgba(34,197,94,0.1)',
+                    color: '#4ade80', padding: '4px 10px', borderRadius: 4,
+                    textTransform: 'uppercase',
                   }}>
-                    GitHub Repo
+                    Verified
                   </span>
-                  <span style={{
-                    fontFamily: 'JetBrains Mono',
-                    fontSize: 9,
-                    color: '#4e4e5e'
-                  }}>
-                    {p.tag}
+                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: 9, color: '#4e4e5e' }}>
+                    {c.issuer}
                   </span>
                 </div>
 
-                {/* Title */}
                 <h3 style={{
-                  fontFamily: 'Outfit, sans-serif',
-                  fontWeight: 600,
-                  fontSize: 22,
-                  color: '#ffffff',
-                  marginBottom: 10,
-                  lineHeight: 1.25
+                  fontFamily: 'Outfit, sans-serif', fontWeight: 600, fontSize: 20,
+                  color: '#ffffff', marginBottom: 10, lineHeight: 1.3,
                 }}>
-                  {p.title}
+                  {c.title}
                 </h3>
 
-                {/* Headline / Description */}
-                <p style={{
-                  fontSize: 13,
-                  lineHeight: 1.6,
-                  color: '#8e8e9f',
-                  marginBottom: 20,
-                  flexGrow: 1
-                }}>
-                  {p.detail}
+                <p style={{ fontSize: 13, lineHeight: 1.6, color: '#8e8e9f', flexGrow: 1 }}>
+                  {c.desc}
                 </p>
 
-                {/* Metrics / Tech Stack */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, borderTop: '1px solid #1f1f26', paddingTop: 16, marginBottom: 20 }}>
-                  {p.metrics.map(([v]) => (
-                    <span key={v} style={{
-                      fontFamily: 'JetBrains Mono',
-                      fontSize: 10,
-                      color: '#8e8e9f',
-                      border: '1px solid #1f1f26',
-                      padding: '3px 8px',
-                      borderRadius: 4,
-                      background: '#13131a'
-                    }}>
-                      {v}
-                    </span>
-                  ))}
+                <div style={{ marginTop: 16, paddingTop: 16, borderTop: '1px solid #1f1f26', display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <span style={{ fontFamily: 'JetBrains Mono', fontSize: 10, color: '#748ffc', letterSpacing: '0.04em' }}>
+                    Klik untuk melihat sertifikat →
+                  </span>
                 </div>
               </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
-            </a>
-          )
-        })}
-      </div>
-    </section>
+      {/* Lightbox */}
+      {lightbox && (
+        <div
+          onClick={() => setLightbox(null)}
+          style={{
+            position: 'fixed', inset: 0, zIndex: 9999,
+            background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            cursor: 'zoom-out', padding: 32,
+            animation: 'fadeIn 0.2s ease',
+          }}
+        >
+          <img
+            src={lightbox}
+            alt="Certificate"
+            style={{ maxWidth: '90%', maxHeight: '90vh', objectFit: 'contain', borderRadius: 8, boxShadow: '0 20px 60px rgba(0,0,0,0.5)' }}
+          />
+          <button
+            onClick={() => setLightbox(null)}
+            style={{
+              position: 'absolute', top: 24, right: 24,
+              width: 40, height: 40, borderRadius: '50%',
+              background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)',
+              color: '#fff', fontSize: 18, cursor: 'pointer',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+            }}
+          >
+            ✕
+          </button>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+      `}</style>
+    </>
   )
 }
 
@@ -642,6 +833,7 @@ export default function App() {
         <About />
         <Services />
         <Projects />
+        <Certifications />
         <Contact />
       </main>
       <Footer />
